@@ -1,124 +1,38 @@
-Contribution: 2023-09-25 20:00
+# Learning-to-See-in-the-Dark
+This is a Pytorch implementation of Learning to See in the Dark in CVPR 2018, by Chen Chen, Qifeng Chen, Jia Xu, and Vladlen Koltun.
 
-Contribution: 2023-09-25 20:01
+This code includes the default model for training and testing on the See-in-the-Dark (SID) dataset.
 
-Contribution: 2023-09-27 20:00
+# Setup
+## Requirement for tensorflow
+Required python (version 2.7) libraries: Tensorflow (>=1.1) + imageio + Numpy + Rawpy.
 
-Contribution: 2023-10-05 20:00
+Tested in Granger server with Cuda (>=8.0) and CuDNN (>=5.0). 
 
-Contribution: 2023-10-05 20:01
+## Requirement for pytorch
+Required python (version 3.10) libraries: torch (>=2.1) + torchvision (>=0.16) + Numpy + Rawpy + imageio.
 
-Contribution: 2023-10-25 20:00
+Tested in Lovegood server with Cuda (>=11.0). Minimum requirement GPU ram : 16 gb. CPU mode should also work but significantly slower.
 
-Contribution: 2023-10-25 20:01
+## Dataset
+You can download it directly from Google drive for the Sony(https://storage.googleapis.com/isl-datasets/SID/Sony.zip) (25 GB)
 
-Contribution: 2023-11-16 20:00
+There is download limit by Google drive in a fixed period of time. If you cannot download because of this, try these links: Sony(https://drive.google.com/open?id=1G6VruemZtpOyHjOC5N8Ww3ftVXOydSXx) (25 GB).
 
-Contribution: 2023-11-16 20:01
+In each row, there are a short-exposed image path, the corresponding long-exposed image path, camera ISO and F number. Note that multiple short-exposed images may correspond to the same long-exposed image.
 
-Contribution: 2023-11-17 20:00
+The file name contains the image information. For example, in "10019_00_0.033s.RAF", the first digit "1" means it is from the test set ("0" for training set and "2" for validation set); "0019" is the image ID; the following "00" is the number in the sequence/burst; "0.033s" is the exposure time 1/30 seconds.
 
-Contribution: 2023-12-11 20:00
+## Testing
+Pretrained models can be found in checkpoint folder.
+By default, the code takes the data in the "./dataset/Sony/" and the model from "./checkpoint/Sony/". If you save the dataset in other folders, please change the "input_dir" and "gt_dir" at the beginning of the code.
 
-Contribution: 2023-12-26 20:00
+## Training new models
+To train the Sony model, run "python train_Sony.py". The result and model will be save in "result_Sony" folder by default.
 
-Contribution: 2023-12-26 20:01
+By default, the code takes the data in the "./dataset/Sony/" folder. If you save the dataset in other folders, please change the "input_dir" and "gt_dir" at the beginning of the code.
 
-Contribution: 2023-12-28 20:00
+Loading the raw data and processing by Rawpy takes significant more time than the backpropagation. By default, the code will load all the groundtruth data processed by Rawpy into memory without 8-bit or 16-bit quantization. This requires at least 64 GB RAM for training the Sony model and 16 GB of GPU VRAM if you use the gpu implementation.
 
-Contribution: 2024-01-11 20:00
-
-Contribution: 2024-01-11 20:01
-
-Contribution: 2024-01-12 20:00
-
-Contribution: 2024-01-12 20:01
-
-Contribution: 2024-02-09 20:00
-
-Contribution: 2024-02-09 20:01
-
-Contribution: 2024-02-19 20:00
-
-Contribution: 2024-02-22 20:00
-
-Contribution: 2024-02-28 20:00
-
-Contribution: 2024-02-28 20:01
-
-Contribution: 2024-03-19 20:00
-
-Contribution: 2024-04-02 20:00
-
-Contribution: 2024-04-25 20:00
-
-Contribution: 2024-04-25 20:01
-
-Contribution: 2024-05-03 20:00
-
-Contribution: 2024-05-03 20:01
-
-Contribution: 2024-05-16 20:00
-
-Contribution: 2024-05-16 20:01
-
-Contribution: 2024-06-26 20:00
-
-Contribution: 2024-06-26 20:01
-
-Contribution: 2024-07-04 20:00
-
-Contribution: 2024-07-04 20:01
-
-Contribution: 2024-07-12 20:00
-
-Contribution: 2024-07-12 20:01
-
-Contribution: 2024-08-15 20:00
-
-Contribution: 2024-08-15 20:01
-
-Contribution: 2024-08-21 20:00
-
-Contribution: 2024-08-21 20:01
-
-Contribution: 2024-09-02 20:00
-
-Contribution: 2024-09-13 20:00
-
-Contribution: 2024-10-01 20:00
-
-Contribution: 2024-10-01 20:01
-
-Contribution: 2024-10-04 20:00
-
-Contribution: 2024-10-16 20:00
-
-Contribution: 2024-11-01 20:00
-
-Contribution: 2024-11-01 20:01
-
-Contribution: 2024-11-29 20:00
-
-Contribution: 2024-12-06 20:00
-
-Contribution: 2024-12-06 20:01
-
-Contribution: 2024-12-17 20:00
-
-Contribution: 2025-01-09 20:00
-
-Contribution: 2025-01-09 20:01
-
-Contribution: 2025-01-17 20:00
-
-Contribution: 2025-01-20 20:00
-
-Contribution: 2025-01-28 20:00
-
-Contribution: 2025-01-28 20:01
-
-Contribution: 2025-02-07 20:00
-
-Contribution: 2025-02-07 20:01
-
+## Citation
+Chen Chen, Qifeng Chen, Jia Xu, and Vladlen Koltun, "Learning to See in the Dark", in CVPR, 2018.
